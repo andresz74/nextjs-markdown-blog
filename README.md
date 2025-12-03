@@ -138,10 +138,11 @@ This is used to construct full URLs for sharing from the `ShareButtons` componen
 
 ## Scripts
 
-- **`npm run dev`**: Starts the development server.
-- **`npm run build`**: Builds the application for production.
-- **`npm run start`**: Runs the built application in production mode.
-- **`npm run lint`**: Lints the project for code consistency.
+- **`yarn dev`**: Starts the development server.
+- **`yarn build`**: Builds the application for production.
+- **`yarn start`**: Runs the built application in production mode.
+- **`yarn lint`**: Lints the project for code consistency.
+- **`yarn test`**: Test the project.
 
 ## Dependencies
 

@@ -1,3 +1,12 @@
+.logo {
+    height: 40px;
+    width: 40px;
+    margin-right: 12px;
+    background-image: var(--theme-logo);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 .imageWrapper {
     display: block;
     position: relative;
@@ -35,11 +44,6 @@
 .navStyles a {
     margin-right: 15px;
     text-decoration: none;
-    color: inherit;
-
-    &:hover {
-        text-decoration: underline;
-    }
 }
 
 .headerStyles {
@@ -51,4 +55,25 @@
 .headerStyles a {
     align-items: center;
     display: flex;
+    text-decoration: none;
+}
+
+.headerStyles a:hover {
+	text-decoration: none;
+	border-bottom: 1px solid var(--link);
+}
+
+.themeLabel {
+    display: flex;
+}
+.themeSelect {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.75rem;
+    outline: none;
+    padding: 2px 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
