@@ -1,5 +1,6 @@
-import React from 'react'; // Import React to avoid the test error
-import Image from 'next/image';
+'use client';
+
+import React from 'react';
 import Link from 'next/link';
 import styles from './Header.module.css';
 import { useTheme, ThemeName } from '../utils/useTheme';
