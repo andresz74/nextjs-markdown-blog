@@ -1,29 +1,65 @@
 'use client';
 import Image from 'next/image';
 import React from 'react';
-import styles from './ImageNode.module.css'; // Import the CSS module
+import styles from './ImageNode.module.css';
 
 export interface ImageProps {
     alt: string;
     src: string;
 }
 
+const isYouTubeUrl = (url: string) => {
+    try {
+        const parsedUrl = new URL(url);
+        return parsedUrl.hostname.includes('youtube.com') || parsedUrl.hostname.includes('youtu.be');
+    } catch {
+        return false;
+    }
+};
+
+const getYouTubeEmbedUrl = (url: string) => {
+    const parsedUrl = new URL(url);
+
+    if (parsedUrl.hostname === 'youtu.be') {
+        // Short url
+        return `https://www.youtube.com/embed/${parsedUrl.pathname.slice(1)}`;
+    }
+
+    const videoId = parsedUrl.searchParams.get('v');
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+};
+
 const StyledImage = ({ src, alt, ...props }: ImageProps) => {
     const [isLoaded, setIsLoaded] = React.useState(false);
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
     const resolvedSrc = src ? `${basePath}${src}` : `${basePath}/default-image.jpg`;
 
+    if (isYouTubeUrl(src)) {
+        const embedUrl = getYouTubeEmbedUrl(src);
+
+        return (
+            <span className={styles.videoWrapper}>
+                <iframe
+                    src={embedUrl}
+                    title={alt || 'YouTube video'}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                />
+            </span>
+        );
+    }
+
     return (
         <span data-testid="image-wrapper" className={`${styles.imageWrapper} ${isLoaded ? styles.isLoaded : styles.loading}`}>
             <Image
-                className={styles.customImg} // Apply the CSS module class
+                className={styles.customImg}
                 src={resolvedSrc}
                 alt={alt || 'Image'}
                 unoptimized
-                onLoad={() => setIsLoaded(true)} // Set the image as loaded when it finishes
-                sizes="(max-width: 800px) 100vw, 800px" /* Allow responsive resizing */
-                width={800} /* Set a default width */
-                height={450} /* Set a default height to maintain 16:9 ratio */
+                onLoad={() => setIsLoaded(true)}
+                sizes="(max-width: 800px) 100vw, 800px"
+                width={1}
+                height={1}
                 {...props}
             />
         </span>
