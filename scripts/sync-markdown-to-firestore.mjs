@@ -101,7 +101,8 @@ const sync = async () => {
 	}
 
 	const serviceAccount = getServiceAccount();
-	const admin = await import('firebase-admin');
+	const adminModule = await import('firebase-admin');
+	const admin = adminModule.default ?? adminModule;
 
 	if (admin.apps.length === 0) {
 		admin.initializeApp({
