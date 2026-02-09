@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import getArticleContent from '@/utils/getArticleContent';
 import getArticleMetadata from '@/utils/getArticleMetadata';
+import getAllContentMetadata from '@/utils/getAllContentMetadata';
 import ArticleContent from '@/components/ArticleContent';
 import { buildArticleJsonLd, buildContentMetadata } from '@/utils/contentPageMeta';
 
@@ -36,6 +37,12 @@ const ArticlePage = ({ params }: DocsPageProps) => {
 	if (!docContent) return notFound();
 	const metadata = docContent.data || {};
 	const title = metadata.title || 'Untitled Article';
+	const tags = metadata.tags ?? [];
+	const relatedItems = getAllContentMetadata()
+		.filter((item) => item.folder === 'docs' && item.slug !== slug)
+		.filter((item) => item.tags?.some((tag) => tags.includes(tag)))
+		.slice(0, 3)
+		.map((item) => ({ title: item.title, slug: item.slug, folder: item.folder }));
 	const jsonLd = buildArticleJsonLd({
 		data: metadata,
 		content: docContent.content,
@@ -45,7 +52,14 @@ const ArticlePage = ({ params }: DocsPageProps) => {
 	return (
 		<>
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-			<ArticleContent articleContent={docContent.content} articleTitle={title} folder='docs' loading={false} slug={slug} />
+			<ArticleContent
+				articleContent={docContent.content}
+				articleTitle={title}
+				folder='docs'
+				loading={false}
+				slug={slug}
+				relatedItems={relatedItems}
+			/>
 		</>
 	);
 };

@@ -72,6 +72,10 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
            Copy Link
         </button>
       </div>
+      <p>
+        1
+         min read
+      </p>
       <div
         class="markdown"
       >

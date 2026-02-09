@@ -84,6 +84,12 @@ const ArticlePage = async ({ params }: FbArticlePageProps) => {
 	const articles: ArticleInterface[] = await ensureArticlesCacheFresh();
 	const article = articles.find((a: ArticleInterface) => a.slug === slug);
 	if (!article) return notFound();
+	const tags = article.tags ?? [];
+	const relatedItems = articles
+		.filter((item) => item.slug !== slug)
+		.filter((item) => item.tags?.some((tag) => tags.includes(tag)))
+		.slice(0, 3)
+		.map((item) => ({ title: item.title, slug: item.slug, folder: 'fb-articles' }));
 	return (
 		<>
 			<ArticleContent
@@ -92,6 +98,7 @@ const ArticlePage = async ({ params }: FbArticlePageProps) => {
 				folder="fb-articles"
 				loading={false}
 				slug={slug}
+				relatedItems={relatedItems}
 			/>
 		</>
 	);
