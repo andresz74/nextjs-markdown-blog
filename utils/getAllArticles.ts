@@ -93,3 +93,17 @@ export function getCachedArticles(maxAgeMs: number = CACHE_TTL_MS) {
 
   return { articles: [], isStale: true };
 }
+
+export async function ensureArticlesCacheFresh(maxAgeMs: number = CACHE_TTL_MS) {
+  const cached = getCachedArticles(maxAgeMs);
+  if (cached.articles.length > 0 && !cached.isStale) {
+    return cached.articles;
+  }
+
+  const refreshed = await fetchAndCacheArticles();
+  if (refreshed.length > 0) {
+    return refreshed;
+  }
+
+  return cached.articles;
+}
