@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-css-tags */
 import React from 'react';
 import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Noto_Sans, Roboto_Mono } from 'next/font/google';
@@ -50,6 +51,11 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${notoSans.variable} ${robotoMono.variable} ${jetBrainsMono.variable}`}
     >
+      <head>
+        <link rel="stylesheet" href="/style/fa.all.css" />
+        <link rel="stylesheet" href="/style/light-steel.css" />
+        <link rel="stylesheet" href="/style/matrix.css" />
+      </head>
       <body>
         {/* Runs before paint to avoid theme flash */}
         <ThemeInit />

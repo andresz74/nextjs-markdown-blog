@@ -1,7 +1,3 @@
-@import "/style/fa.all.css";
-@import '/style/light-steel.css';
-@import '/style/matrix.css';
-
 :root {
 	--bg: var(--bright-snow);
 	--text: var(--color-primary);
