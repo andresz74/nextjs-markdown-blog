@@ -45,8 +45,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 	return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${notoSans.variable} ${robotoMono.variable} ${jetBrainsMono.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${notoSans.variable} ${robotoMono.variable} ${jetBrainsMono.variable}`}
+    >
+      <body>
         {/* Runs before paint to avoid theme flash */}
         <ThemeInit />
 		<React.Suspense>

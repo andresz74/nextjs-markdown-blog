@@ -16,6 +16,9 @@
 
 	--theme-font: var(--font-noto), sans-serif;
 	--theme-mono-font: var(--font-roboto-mono), monospace;
+	--font-noto: "Noto Sans";
+	--font-roboto-mono: "Roboto Mono";
+	--font-jetbrains-mono: "JetBrains Mono";
 
 	--font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
 	  "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
