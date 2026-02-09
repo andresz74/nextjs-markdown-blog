@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:coverage": "jest --coverage --runInBand"
+    "test:coverage": "jest --coverage --runInBand",
+    "validate:content": "node scripts/validate-content-frontmatter.mjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
