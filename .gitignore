@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+.yarn/cache
 
 # testing
 /coverage
@@ -15,6 +16,7 @@
 
 # production
 /build
+/cache
 
 # misc
 .DS_Store
@@ -27,6 +29,8 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
+serviceAccountKey.json
 
 # vercel
 .vercel
