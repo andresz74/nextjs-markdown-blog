@@ -1,166 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# My Blog
 
-# Next.js Markdown Blog
+A statically generated blog built with Next.js 14 and TypeScript. Articles are written in Markdown and rendered with React components, including syntax highlighting for code samples.
 
-This project is a personal blog built with Next.js that uses Markdown files for content management. The application is designed to allow publishing of blog articles with structured metadata, organized content, and a minimalistic layout. Styled Components and various utilities are included to enhance the blogging experience and styling.
+## Project structure
+- `app/` – Next.js App Router pages for the blog, docs, notes, and article detail views.
+- `articles/` – Markdown posts that power the main blog listing on `/` (original writing).
+- `notes/` – Markdown summaries of interesting YouTube videos.
+- `components/` – Shared UI such as `ArticleCard` used to render post previews.
+- `utils/` – Helpers like `getArticleMetadata` that read and cache Markdown frontmatter.
+- `__tests__/` – Jest and Testing Library test suites.
 
-![My Blog](https://objects-us-east-1.dream.io/az-assets/nextjs-markdown-blog.png)
+## Prerequisites
+- Node.js 18+
+- Yarn (project uses Yarn 3; a `.yarnrc` is not checked in, so `yarn install` will create one locally.)
 
-## Table of Contents
-
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
-- [Markdown Structure](#markdown-structure)
-- [Scripts](#scripts)
-- [Dependencies](#dependencies)
-- [License](#license)
-
-## Features
-
-- **Next.js**: A React framework that enables static and server-rendered pages.
-- **Markdown Support**: Easily write articles in Markdown with metadata.
-- **Dynamic Routing**: Each article is served with a unique route generated from the file name.
-- **Styled Components**: Uses Styled Components for styling the blog layout.
-- **Syntax Highlighting**: Highlight code blocks using `react-syntax-highlighter`.
-- **SEO-friendly Metadata**: Generate page metadata from each article's title.
-
-## Getting Started
-
-### Prerequisites
-
-Ensure you have the following tools installed:
-
-- **Node.js** (v18.x or later)
-- **npm** (v8.x or later)
-
-### Installation
-
-1. Clone this repository:
-
+## Getting started
+1. Install dependencies:
    ```bash
-   git clone https://github.com/andresz74/nextjs-markdown-blog.git
-   cd nextjs-markdown-blog
+   yarn install
    ```
-
-2. Install dependencies:
-
+2. Run the development server:
    ```bash
-   yarn
+   yarn dev
    ```
+3. Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-3. Create a folder named `articles` in the root of the project. Add Markdown files in this folder to publish articles.
+To add a new post, drop a Markdown file with frontmatter (`title`, `date`, `description`, optional `image`) into the `articles/` directory for original writing or the `notes/` directory for YouTube summaries. The homepage will automatically pick it up and sort posts by date.
 
-### Running the Project
+## Testing and linting
+- Run the test suite: `yarn test`
+- Run ESLint checks: `yarn lint`
 
-To start the development server:
+## Sync Markdown to Firestore
+This repo includes a sync script to upsert markdown content into Firestore collections:
+- `articles/*.md` -> `articles`
+- `notes/*.md` -> `notes`
 
-```bash
-yarn dev
-```
+Commands:
+- Dry run (default-safe): `yarn sync:firestore:dry`
+- Apply changes: `yarn sync:firestore`
 
-To build the project for production:
+Credentials (one of the following):
+- `FIREBASE_SERVICE_ACCOUNT_PATH=/absolute/path/to/serviceAccountKey.json`
+- `GOOGLE_APPLICATION_CREDENTIALS=/absolute/path/to/serviceAccountKey.json`
+- `FIREBASE_SERVICE_ACCOUNT_JSON='{"type":"service_account",...}'`
 
-```bash
-yarn build
-```
+The script file is `scripts/sync-markdown-to-firestore.mjs`.
 
-To serve the production build locally:
-
-```bash
-yarn start
-```
-
-To test the project:
-
-```bash
-yarn test
-```
-With coverage
-```bash
-yarn test --coverage
-```
-
-## Project Structure
-
-Here's a breakdown of the core components and utilities used in this blog:
-
-- **`components/ArticleContent.tsx`**: Renders the main content of each article with Markdown formatting.
-- **`components/ArticleCard.tsx`**: Displays a brief preview of each article in the blog home.
-- **`utils/getArticleMetadata.ts`**: Utility to extract metadata from each Markdown file.
-- **`utils/getArticleContent.ts`**: Utility to retrieve and parse the content of each Markdown file.
-
-## Markdown Structure
-
-Each Markdown file should contain front matter for metadata. Example structure:
-
-```markdown
----
-title: "The Arctic Predator"
-date: "2024-05-13"
-description: "Polar bears, majestic predators of the Arctic, are facing unprecedented challenges due to climate change..."
----
-
-### The Arctic Predator
-
-Content goes here...
-```
-
-Place all your Markdown files in the `articles` folder. The filename will be used as the `slug` for routing.
-
-### Example of Generated Metadata
-
-Each page's metadata is generated dynamically to reflect the article title:
-
-- Page title: `My Blog - [Article Title]`
-- Description: Based on `description` in the article's front matter
-
-### Sharing Articles
-
-Blog posts now include a share section with buttons for:
-
-- Twitter (X)
-- Facebook
-- LinkedIn
-- Reddit
-- Copy to clipboard
-
-These buttons appear at the bottom of each article and are dynamically generated based on the article's title and URL.
-To ensure correct sharing links, make sure to set the `NEXT_PUBLIC_BASE_URL` environment variable in your `.env.local` file:
-```
-NEXT_PUBLIC_BASE_URL=https://yourdomain.com
-````
-
-This is used to construct full URLs for sharing from the `ShareButtons` component:
-```
-<ShareButtons title={articleTitle} url={`${process.env.NEXT_PUBLIC_BASE_URL}/${folder}/${slug}`} />
-```
-
-## Scripts
-
-- **`yarn dev`**: Starts the development server.
-- **`yarn build`**: Builds the application for production.
-- **`yarn start`**: Runs the built application in production mode.
-- **`yarn lint`**: Lints the project for code consistency.
-- **`yarn test`**: Test the project.
-
-## Dependencies
-
-- **`next`**: Framework for React-based applications with static and server-rendered pages.
-- **`react`** and **`react-dom`**: Core libraries for building and rendering React components.
-- **`gray-matter`**: Parses front matter in Markdown files to extract metadata.
-- **`react-markdown`**: Renders Markdown content as React components.
-- **`remark-gfm`**: Adds GitHub-flavored Markdown support to `react-markdown`.
-- **`react-syntax-highlighter`**: Enables syntax highlighting for code blocks.
-- **`styled-components`**: CSS-in-JS library for styling components.
-
-### Dev Dependencies
-
-- **`@types/node`**: TypeScript type definitions for Node.js.
-- **`@types/react`** and **`@types/react-dom`**: TypeScript definitions for React.
-- **`eslint`** and **`eslint-config-next`**: Linter and Next.js-specific linting rules.
-- **`typescript`**: Static typing for JavaScript.
-
-## License
-
-This project is licensed under the MIT License.
+## Deployment
+Build the production bundle with `yarn build`. Start the optimized server locally with `yarn start` after building, or deploy the build output to Cloudflare (the project is configured and optimized for Cloudflare deployment).
