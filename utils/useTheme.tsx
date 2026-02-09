@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 
-export type ThemeName = "light" | "dark" | "matrix";
+export type ThemeName = "light" | "dark" | "matrix" | "system";
 
 const THEME_KEY = "theme";
+
+const resolveSystemTheme = () =>
+  window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+const applyResolvedTheme = (theme: "light" | "dark" | "matrix") => {
+  document.documentElement.setAttribute("data-theme", theme);
+};
 
 export function getInitialTheme(): ThemeName {
   // 1. localStorage
   if (typeof window !== "undefined") {
     const stored = window.localStorage.getItem(THEME_KEY) as ThemeName | null;
-    if (stored === "light" || stored === "dark" || stored === "matrix") {
+    if (stored === "light" || stored === "dark" || stored === "matrix" || stored === "system") {
       return stored;
     }
 
@@ -33,9 +40,16 @@ export function useTheme() {
 
   useEffect(() => {
     if (!ready) return;
-    // Apply to <html>
-    document.documentElement.setAttribute("data-theme", theme);
-    // Persist
+    if (theme === "system") {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      const syncSystemTheme = () => applyResolvedTheme(resolveSystemTheme());
+      syncSystemTheme();
+      mediaQuery.addEventListener("change", syncSystemTheme);
+      window.localStorage.setItem(THEME_KEY, theme);
+      return () => mediaQuery.removeEventListener("change", syncSystemTheme);
+    }
+
+    applyResolvedTheme(theme);
     window.localStorage.setItem(THEME_KEY, theme);
   }, [theme, ready]);
 
@@ -51,6 +65,6 @@ export function useTheme() {
     theme,
     setTheme: setThemeSafe,
     cycleTheme,
-    themes: ["light", "dark", 'matrix'] as ThemeName[],
+    themes: ["light", "dark", "matrix", "system"] as ThemeName[],
   };
 }
