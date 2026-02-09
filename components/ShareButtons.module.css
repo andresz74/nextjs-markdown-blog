@@ -19,6 +19,10 @@
 	text-decoration: none;
 }
 
+.shareIcon {
+    font-size: 12px;
+}
+
 .shareContainer a:hover,
 .shareContainer button:hover {
     background: var(--color-secondary);
