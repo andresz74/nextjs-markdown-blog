@@ -1,84 +1,56 @@
 import { useEffect, useState } from "react";
 
-export type ThemeName = "light" | "dark" | "system";
+export type ThemeName = "light" | "dark" | "matrix";
 
 const THEME_KEY = "theme";
 
-const MEDIA_QUERY = "(prefers-color-scheme: dark)";
+export function getInitialTheme(): ThemeName {
+  // 1. localStorage
+  if (typeof window !== "undefined") {
+    const stored = window.localStorage.getItem(THEME_KEY) as ThemeName | null;
+    if (stored === "light" || stored === "dark" || stored === "matrix") {
+      return stored;
+    }
 
-type ResolvedTheme = Exclude<ThemeName, "system">;
-
-function getPreferredTheme(): ResolvedTheme {
-  if (typeof window !== "undefined" && window.matchMedia?.(MEDIA_QUERY).matches) {
-    return "dark";
+    // 2. prefers-color-scheme baseline (only to choose between light/dark)
+    if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
   }
 
+  // 3. default
   return "light";
 }
 
-function getInitialTheme(): ThemeName {
-  if (typeof window !== "undefined") {
-    const stored = window.localStorage.getItem(THEME_KEY) as ThemeName | null;
-    if (stored === "light" || stored === "dark" || stored === "system") {
-      return stored;
-    }
-  }
-
-  return "system";
-}
-
 export function useTheme() {
-  const [theme, setTheme] = useState<ThemeName>(() => getInitialTheme());
-  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>(() => {
-    const initial = getInitialTheme();
-    return initial === "system" ? getPreferredTheme() : initial;
-  });
+  const [theme, setTheme] = useState<ThemeName>("light");
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const media = window.matchMedia?.(MEDIA_QUERY);
-
-    const handleChange = (event: MediaQueryListEvent) => {
-      if (theme === "system") {
-        setResolvedTheme(event.matches ? "dark" : "light");
-      }
-    };
-
-    if (media?.addEventListener) {
-      media.addEventListener("change", handleChange);
-    }
-
-    return () => {
-      if (media?.removeEventListener) {
-        media.removeEventListener("change", handleChange);
-      }
-    };
-  }, [theme]);
+    setTheme(getInitialTheme());
+    setReady(true);
+  }, []);
 
   useEffect(() => {
-    const appliedTheme = theme === "system" ? resolvedTheme : theme;
-
-    document.documentElement.setAttribute("data-theme", appliedTheme);
+    if (!ready) return;
+    // Apply to <html>
+    document.documentElement.setAttribute("data-theme", theme);
+    // Persist
     window.localStorage.setItem(THEME_KEY, theme);
-
-    if (theme === "system") {
-      setResolvedTheme(getPreferredTheme());
-    }
-  }, [theme, resolvedTheme]);
+  }, [theme, ready]);
 
   const setThemeSafe = (next: ThemeName) => setTheme(next);
 
   const cycleTheme = () => {
-    setTheme((prev) => {
-      if (prev === "light") return "dark";
-      if (prev === "dark") return "system";
-      return "light";
-    });
+    setTheme((prev) =>
+      prev === "light" ? "dark" : prev === "dark" ? "matrix" : "light"
+    );
   };
 
   return {
     theme,
     setTheme: setThemeSafe,
     cycleTheme,
-    themes: ["system", "light", "dark"] as ThemeName[],
+    themes: ["light", "dark", 'matrix'] as ThemeName[],
   };
 }
