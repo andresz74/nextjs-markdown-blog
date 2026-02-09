@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { notFound } from 'next/navigation';
 import getArticleContent from '@/utils/getArticleContent';
 import getArticleMetadata from '@/utils/getArticleMetadata';
@@ -39,12 +38,7 @@ const ArticlePage = (props: any) => {
 	// Use ArticleContent for client-side logic
 	return (
 		<>
-			<Head>
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-				/>
-			</Head>
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 			<ArticleContent articleContent={docContent.content} articleTitle={title} folder='docs' loading={false} slug={slug} />
 		</>
 	);
