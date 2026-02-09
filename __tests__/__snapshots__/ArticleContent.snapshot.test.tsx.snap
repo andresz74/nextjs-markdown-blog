@@ -10,7 +10,9 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
           rel="noopener noreferrer"
           target="_blank"
         >
-          <span>
+          <span
+            style="font-size: 24px; color: currentColor;"
+          >
             <span
               class="fa-brands fa-twitter"
             />
@@ -22,7 +24,9 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
           rel="noopener noreferrer"
           target="_blank"
         >
-          <span>
+          <span
+            style="font-size: 24px; color: currentColor;"
+          >
             <span
               class="fa-brands fa-facebook"
             />
@@ -34,7 +38,9 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
           rel="noopener noreferrer"
           target="_blank"
         >
-          <span>
+          <span
+            style="font-size: 24px; color: currentColor;"
+          >
             <span
               class="fa-brands fa-linkedin"
             />
@@ -46,7 +52,9 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
           rel="noopener noreferrer"
           target="_blank"
         >
-          <span>
+          <span
+            style="font-size: 24px; color: currentColor;"
+          >
             <span
               class="fa-brands fa-reddit"
             />
@@ -54,7 +62,9 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
            Share on Reddit
         </a>
         <button>
-          <span>
+          <span
+            style="font-size: 24px; color: currentColor;"
+          >
             <span
               class="fa-solid fa-link"
             />
