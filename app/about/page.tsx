@@ -8,7 +8,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 	};
 };
 
-const ArticlePage = (props: any) => {
+const ArticlePage = () => {
 	const about = getArticleContent('assets/md/', 'about');
 	return (
 		<main>

@@ -15,16 +15,16 @@ export interface CachedArticle {
   title: string;
 }
 
-const buildArticlePayload = (docData: Record<string, any>, slug: string) => ({
+const buildArticlePayload = (docData: Record<string, unknown>, slug: string): CachedArticle => ({
   slug,
-  author: docData.author,
-  canonical: docData.canonical,
-  content: docData.content,
-  date: docData.date,
-  bio: docData.description,
-  image: docData.image,
-  tags: docData.tags,
-  title: docData.title,
+  author: String(docData.author ?? ''),
+  canonical: String(docData.canonical ?? ''),
+  content: String(docData.content ?? ''),
+  date: String(docData.date ?? ''),
+  bio: String(docData.description ?? ''),
+  image: String(docData.image ?? ''),
+  tags: Array.isArray(docData.tags) ? docData.tags.filter((tag): tag is string => typeof tag === 'string') : [],
+  title: String(docData.title ?? ''),
 });
 
 const CACHE_TTL_MS = 1000 * 60 * 10;

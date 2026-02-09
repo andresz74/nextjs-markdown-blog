@@ -13,6 +13,12 @@ interface Params {
 	slug?: string;
 }
 
+interface DocsPageProps {
+	params: {
+		slug: string;
+	};
+}
+
 export const generateMetadata = async ({ params }: { params: Params }) => {
 	const slug = params?.slug || '';
 	const articleContent = getArticleContent('docs/', slug);
@@ -24,8 +30,8 @@ export const generateMetadata = async ({ params }: { params: Params }) => {
 	});
 };
 
-const ArticlePage = (props: any) => {
-	const slug = props.params.slug;
+const ArticlePage = ({ params }: DocsPageProps) => {
+	const slug = params.slug;
 	const docContent = getArticleContent('docs/', slug);
 	if (!docContent) return notFound();
 	const metadata = docContent.data || {};

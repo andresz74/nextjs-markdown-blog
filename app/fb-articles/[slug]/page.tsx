@@ -7,6 +7,12 @@ interface Params {
 	slug?: string;
 }
 
+interface FbArticlePageProps {
+	params: {
+		slug: string;
+	};
+}
+
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
@@ -72,8 +78,8 @@ export const generateMetadata = async ({ params }: { params: Params }) => {
 	}
 };
 
-const ArticlePage = async (props: any) => {
-	const slug = props.params.slug;
+const ArticlePage = async ({ params }: FbArticlePageProps) => {
+	const slug = params.slug;
 	const articles: ArticlestInterface[] = await ensureArticlesCacheFresh();
 	const article = articles.find((a: ArticlestInterface) => a.slug === slug);
 	if (!article) return notFound();

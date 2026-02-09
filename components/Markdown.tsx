@@ -24,7 +24,7 @@ const inlineCodeStyle = {
 	fontSize: '0.875rem',
 };
 
-const renderInlineCode = ({ children, ...props }: any) => {
+const renderInlineCode = ({ children, ...props }: React.ComponentProps<'code'>) => {
 	return (
 		<code style={inlineCodeStyle} {...props}>
 			{children}
@@ -33,7 +33,7 @@ const renderInlineCode = ({ children, ...props }: any) => {
 };
 
 const renderHeading = (level: number) => {
-	const Component = ({ children, ...props }: any) => {
+	const Component = ({ children, ...props }: React.ComponentProps<'h1'>) => {
 		return (
 			<Heading level={level} {...props}>
 				{children}

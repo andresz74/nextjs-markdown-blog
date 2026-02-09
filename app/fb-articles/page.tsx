@@ -4,10 +4,10 @@ import { ensureArticlesCacheFresh } from '@/utils/getAllArticles';
 import Markdown from 'react-markdown';
 import styles from './page.module.css';
 
-const ArticlePage = async (props: any) => {
+const ArticlePage = async () => {
     console.log('Rendering articles page...');
     const articles: ArticlestInterface[] = await ensureArticlesCacheFresh();
-    const sortedArticles = articles.sort((a: any, b: any) =>
+    const sortedArticles = articles.sort((a: ArticlestInterface, b: ArticlestInterface) =>
         new Date(b.date).getTime() - new Date(a.date).getTime()
     );
   
