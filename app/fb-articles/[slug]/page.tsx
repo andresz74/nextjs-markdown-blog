@@ -1,5 +1,6 @@
 import ArticleContent from '@/components/ArticleContent';
 import { ensureArticlesCacheFresh } from '@/utils/getAllArticles';
+import logger from '@/utils/logger';
 import { ArticlestInterface } from '@/types/ArticleInterface';
 import { notFound } from 'next/navigation';
 
@@ -70,7 +71,7 @@ export const generateMetadata = async ({ params }: { params: Params }) => {
 			},
 		};
 	} catch (error) {
-		console.error(`Error fetching metadata for slug: ${slug}`, error);
+		logger.error('fb-articles/[slug]/metadata', `Error fetching metadata for slug: ${slug}`, error);
 		return {
 			title: 'The Tech Pulse',
 			description: 'Explore tech articles on web development, programming, and more.',
