@@ -1,0 +1,49 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.label {
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+}
+
+.searchInput {
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-soft-secondary);
+    background: var(--card-bg);
+    color: var(--text);
+}
+
+.tagList {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+}
+
+.tagLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    max-width: 260px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--color-soft-secondary);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.75rem;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.tagLink:hover {
+    border-color: var(--color-soft-primary);
+}
+
+.count {
+    color: var(--color-secondary);
+}
