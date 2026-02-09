@@ -1,5 +1,5 @@
 import ArticleCard from '@/components/ArticleCard';
-import { ArticlestInterface } from '@/types/ArticleInterface';
+import { ArticleInterface } from '@/types/ArticleInterface';
 import { ensureArticlesCacheFresh } from '@/utils/getAllArticles';
 import logger from '@/utils/logger';
 import Markdown from 'react-markdown';
@@ -7,8 +7,8 @@ import styles from './page.module.css';
 
 const ArticlePage = async () => {
     logger.info('fb-articles/page', 'Rendering articles page');
-    const articles: ArticlestInterface[] = await ensureArticlesCacheFresh();
-    const sortedArticles = articles.sort((a: ArticlestInterface, b: ArticlestInterface) =>
+    const articles: ArticleInterface[] = await ensureArticlesCacheFresh();
+    const sortedArticles = articles.sort((a: ArticleInterface, b: ArticleInterface) =>
         new Date(b.date).getTime() - new Date(a.date).getTime()
     );
   

@@ -9,7 +9,7 @@ interface IconProps {
 
 const Icon: React.FC<IconProps> = ({ name, size = 24, color = 'currentColor' }) => {
 	return (
-		<span className={styles.icon}>
+		<span className={styles.icon} style={{ fontSize: `${size}px`, color }}>
 			<span className={name} />
 		</span>
 	);

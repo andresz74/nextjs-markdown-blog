@@ -1,7 +1,7 @@
 import ArticleContent from '@/components/ArticleContent';
 import { ensureArticlesCacheFresh } from '@/utils/getAllArticles';
 import logger from '@/utils/logger';
-import { ArticlestInterface } from '@/types/ArticleInterface';
+import { ArticleInterface } from '@/types/ArticleInterface';
 import { notFound } from 'next/navigation';
 
 interface Params {
@@ -18,15 +18,15 @@ export const dynamic = 'force-static';
 export const dynamicParams = false;
 
 export const generateStaticParams = async () => {
-	const articles: ArticlestInterface[] = await ensureArticlesCacheFresh();
+	const articles: ArticleInterface[] = await ensureArticlesCacheFresh();
 	return articles.map(article => ({ slug: article.slug }));
 };
 
 export const generateMetadata = async ({ params }: { params: Params }) => {
 	const slug = params?.slug || '';
 	const baseUrl = 'https://blog.andreszenteno.com';
-	const articles: ArticlestInterface[] = await ensureArticlesCacheFresh();
-	const article = articles.find((a: ArticlestInterface) => a.slug === params.slug);
+	const articles: ArticleInterface[] = await ensureArticlesCacheFresh();
+	const article = articles.find((a: ArticleInterface) => a.slug === params.slug);
 
 	try {
 		// Fetch the article content and metadata
@@ -81,8 +81,8 @@ export const generateMetadata = async ({ params }: { params: Params }) => {
 
 const ArticlePage = async ({ params }: FbArticlePageProps) => {
 	const slug = params.slug;
-	const articles: ArticlestInterface[] = await ensureArticlesCacheFresh();
-	const article = articles.find((a: ArticlestInterface) => a.slug === slug);
+	const articles: ArticleInterface[] = await ensureArticlesCacheFresh();
+	const article = articles.find((a: ArticleInterface) => a.slug === slug);
 	if (!article) return notFound();
 	return (
 		<>
