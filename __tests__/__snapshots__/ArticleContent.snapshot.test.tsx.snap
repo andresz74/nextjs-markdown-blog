@@ -11,7 +11,7 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
           target="_blank"
         >
           <span
-            style="font-size: 24px; color: currentColor;"
+            style="font-size: 12px; color: currentColor;"
           >
             <span
               class="fa-brands fa-twitter"
@@ -25,7 +25,7 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
           target="_blank"
         >
           <span
-            style="font-size: 24px; color: currentColor;"
+            style="font-size: 12px; color: currentColor;"
           >
             <span
               class="fa-brands fa-facebook"
@@ -39,7 +39,7 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
           target="_blank"
         >
           <span
-            style="font-size: 24px; color: currentColor;"
+            style="font-size: 12px; color: currentColor;"
           >
             <span
               class="fa-brands fa-linkedin"
@@ -53,7 +53,7 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
           target="_blank"
         >
           <span
-            style="font-size: 24px; color: currentColor;"
+            style="font-size: 12px; color: currentColor;"
           >
             <span
               class="fa-brands fa-reddit"
@@ -63,7 +63,7 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
         </a>
         <button>
           <span
-            style="font-size: 24px; color: currentColor;"
+            style="font-size: 12px; color: currentColor;"
           >
             <span
               class="fa-solid fa-link"

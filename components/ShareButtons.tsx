@@ -19,30 +19,30 @@ const ShareButtons = ({ title, url }: { title: string; url: string }) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Icon name='fa-brands fa-twitter'/> Share on Twitter
+        <Icon name='fa-brands fa-twitter' size={12} /> Share on Twitter
       </a>
       <a
         href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Icon name='fa-brands fa-facebook'/> Share on Facebook
+        <Icon name='fa-brands fa-facebook' size={12} /> Share on Facebook
       </a>
       <a
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Icon name='fa-brands fa-linkedin'/> Share on LinkedIn
+        <Icon name='fa-brands fa-linkedin' size={12} /> Share on LinkedIn
       </a>
       <a
         href={`https://reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`}
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Icon name='fa-brands fa-reddit'/> Share on Reddit
+        <Icon name='fa-brands fa-reddit' size={12} /> Share on Reddit
       </a>
-      <button onClick={handleCopy}><Icon name='fa-solid fa-link'/> Copy Link</button>
+      <button onClick={handleCopy}><Icon name='fa-solid fa-link' size={12} /> Copy Link</button>
     </div>
   );
 };
