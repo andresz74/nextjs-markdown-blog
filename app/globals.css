@@ -10,11 +10,8 @@
 	--color-soft-primary: var(--pale-slate-2);
 	--color-soft-secondary: var(--alabaster-grey);
 
-	--theme-font: var(--font-noto), sans-serif;
-	--theme-mono-font: var(--font-roboto-mono), monospace;
-	--font-noto: "Noto Sans";
-	--font-roboto-mono: "Roboto Mono";
-	--font-jetbrains-mono: "JetBrains Mono";
+	--theme-font: var(--font-noto, sans-serif);
+	--theme-mono-font: var(--font-roboto-mono, monospace);
 
 	--font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
 	  "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
@@ -74,7 +71,7 @@ html[data-theme="light"] {
 	--color-soft-secondary: var(--alabaster-grey);
 
 	--theme-font: var(--font-mono);
-	--theme-mono-font: var(--font-roboto-mono);
+	--theme-mono-font: var(--font-roboto-mono, var(--font-mono));
 	--theme-font-size: 16px;
 
 	--theme-box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -95,7 +92,7 @@ html[data-theme="dark"] {
 	--color-soft-secondary: var(--gunmetal);
 
 	--theme-font: var(--font-mono);
-	--theme-mono-font: var(--font-roboto-mono);
+	--theme-mono-font: var(--font-roboto-mono, var(--font-mono));
 	--theme-font-size: 16px;
 
 	--theme-box-shadow: 0 1px 3px 0 rgb(255 255 255 / 0.1), 0 1px 2px -1px rgb(255 255 255 / 0.1);
@@ -116,7 +113,7 @@ html[data-theme="matrix"] {
 	--color-soft-secondary: var(--dark-spruce);
 
 	--theme-font: var(--font-mono);
-	--theme-mono-font: var(--font-jetbrains-mono);
+	--theme-mono-font: var(--font-jetbrains-mono, var(--font-mono));
 	--theme-font-size: 16px;
 
 	--theme-box-shadow: 0 1px 3px 0 rgb(213 242 227 / 0.1), 0 1px 2px -1px rgb(213 242 227 / 0.1);
