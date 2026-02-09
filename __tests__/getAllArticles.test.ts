@@ -78,4 +78,16 @@ describe('getAllArticles utils', () => {
     const result = getCachedArticles();
     expect(result).toEqual({ articles: [], isStale: true });
   });
+
+  it('getCachedArticles supports legacy array cache schema', () => {
+    const legacy = [{ slug: 'legacy-post', title: 'Legacy Post' }];
+    fs.mkdirSync(path.dirname(CACHE_PATH), { recursive: true });
+    fs.writeFileSync(CACHE_PATH, JSON.stringify(legacy));
+
+    const result = getCachedArticles();
+    expect(result).toEqual({
+      articles: legacy,
+      isStale: true,
+    });
+  });
 });
