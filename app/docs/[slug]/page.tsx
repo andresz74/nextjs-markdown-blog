@@ -6,8 +6,8 @@ import ArticleContent from '@/components/ArticleContent';
 import { buildArticleJsonLd, buildContentMetadata } from '@/utils/contentPageMeta';
 
 export const generateStaticParams = async () => {
-	const articles = getArticleMetadata('articles');
-	return articles.map(article => ({ slug: article.slug }));
+	const docs = getArticleMetadata('docs');
+	return docs.map(doc => ({ slug: doc.slug }));
 };
 
 interface Params {
@@ -16,24 +16,24 @@ interface Params {
 
 export const generateMetadata = async ({ params }: { params: Params }) => {
 	const slug = params?.slug || '';
-	const articleContent = getArticleContent('articles/', slug);
+	const articleContent = getArticleContent('docs/', slug);
 	return buildContentMetadata({
 		slug,
-		sectionPath: 'articles',
+		sectionPath: 'docs',
 		data: articleContent?.data,
-		fallbackTitle: 'The Tech Pulse',
+		fallbackTitle: 'The Tech Pulse | Tech Insights',
 	});
 };
 
 const ArticlePage = (props: any) => {
 	const slug = props.params.slug;
-	const articleContent = getArticleContent('articles/', slug);
-	if (!articleContent) return notFound();
-	const metadata = articleContent.data || {};
+	const docContent = getArticleContent('docs/', slug);
+	if (!docContent) return notFound();
+	const metadata = docContent.data || {};
 	const title = metadata.title || 'Untitled Article';
 	const jsonLd = buildArticleJsonLd({
 		data: metadata,
-		content: articleContent.content,
+		content: docContent.content,
 	});
 
 	// Use ArticleContent for client-side logic
@@ -45,7 +45,7 @@ const ArticlePage = (props: any) => {
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				/>
 			</Head>
-			<ArticleContent articleTitle={title} articleContent={articleContent.content} folder='articles' slug={slug} loading={false} />
+			<ArticleContent articleContent={docContent.content} articleTitle={title} folder='docs' loading={false} slug={slug} />
 		</>
 	);
 };
