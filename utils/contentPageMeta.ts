@@ -4,6 +4,7 @@ export const SITE_URL = 'https://blog.andreszenteno.com';
 const DEFAULT_DESCRIPTION = 'Explore tech articles on web development, programming, and more.';
 const DEFAULT_IMAGE = '/media/default-image.jpg';
 const DEFAULT_AUTHOR = 'Andres Zenteno';
+const USE_DYNAMIC_OG = process.env.NEXT_PUBLIC_DYNAMIC_OG_ENABLED === 'true';
 
 export interface ContentFrontmatter {
 	title?: string;
@@ -18,6 +19,18 @@ const toAbsoluteImageUrl = (image?: string) => {
 	const resolvedImage = image || DEFAULT_IMAGE;
 	const isAbsoluteUrl = resolvedImage.startsWith('http://') || resolvedImage.startsWith('https://');
 	return isAbsoluteUrl ? resolvedImage : `${SITE_URL}${resolvedImage}`;
+};
+
+const getPreferredImageUrl = (title: string, image?: string) => {
+	if (image) {
+		return toAbsoluteImageUrl(image);
+	}
+
+	if (USE_DYNAMIC_OG) {
+		return `${SITE_URL}/og?title=${encodeURIComponent(title)}`;
+	}
+
+	return toAbsoluteImageUrl(DEFAULT_IMAGE);
 };
 
 export const buildContentMetadata = ({
@@ -40,7 +53,7 @@ export const buildContentMetadata = ({
 
 	const title = data.title || 'Untitled Article';
 	const description = data.description || DEFAULT_DESCRIPTION;
-	const imageUrl = toAbsoluteImageUrl(data.image);
+	const imageUrl = getPreferredImageUrl(title, data.image);
 	const keywords = data.tags?.join(', ');
 	const canonical = `${SITE_URL}/${sectionPath}/${slug}`;
 
@@ -92,7 +105,7 @@ export const buildArticleJsonLd = ({
 }) => {
 	const title = data?.title || 'Untitled Article';
 	const description = data?.description || 'Explore tech articles...';
-	const imageUrl = toAbsoluteImageUrl(data?.image);
+	const imageUrl = getPreferredImageUrl(title, data?.image);
 	const wordCount = content.split(' ').length;
 
 	return {

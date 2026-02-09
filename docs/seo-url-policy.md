@@ -13,6 +13,7 @@
 - `alternates.canonical` must point to the same route the page is served from.
 - `openGraph.url` must equal canonical.
 - Social image URLs should be absolute.
+- Optional dynamic OG pipeline: set `NEXT_PUBLIC_DYNAMIC_OG_ENABLED=true` to use `/og?title=...` fallback images when frontmatter image is missing.
 
 ## Sitemap and robots
 - `app/sitemap.ts` is the source of truth for crawlable routes.
