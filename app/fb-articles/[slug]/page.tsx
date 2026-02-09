@@ -39,7 +39,7 @@ export const generateMetadata = async ({ params }: { params: Params }) => {
 				type: 'article',
 				title,
 				description,
-				url: `${baseUrl}/notes/${slug}`,
+				url: `${baseUrl}/fb-articles/${slug}`,
 				site_name: 'The Tech Pulse',
 				locale: 'en_US',
 				images: [
@@ -60,7 +60,7 @@ export const generateMetadata = async ({ params }: { params: Params }) => {
 				creator: '@andresz',
 			},
 			alternates: {
-				canonical: `${baseUrl}/notes/${slug}`,
+				canonical: `${baseUrl}/fb-articles/${slug}`,
 			},
 		};
 	} catch (error) {
