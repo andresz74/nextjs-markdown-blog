@@ -4,22 +4,84 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
 <div>
   <main>
     <article>
-      <h1>
-        Snapshot Test
-      </h1>
-      
+      <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=Snapshot%20Test&url=https%3A%2F%2Fblog.andreszenteno.com%2Farticles%2Fsnapshot-test"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <span>
+            <span
+              class="fa-brands fa-twitter"
+            />
+          </span>
+           Share on Twitter
+        </a>
+        <a
+          href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.andreszenteno.com%2Farticles%2Fsnapshot-test"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <span>
+            <span
+              class="fa-brands fa-facebook"
+            />
+          </span>
+           Share on Facebook
+        </a>
+        <a
+          href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fblog.andreszenteno.com%2Farticles%2Fsnapshot-test"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <span>
+            <span
+              class="fa-brands fa-linkedin"
+            />
+          </span>
+           Share on LinkedIn
+        </a>
+        <a
+          href="https://reddit.com/submit?url=https%3A%2F%2Fblog.andreszenteno.com%2Farticles%2Fsnapshot-test&title=Snapshot%20Test"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <span>
+            <span
+              class="fa-brands fa-reddit"
+            />
+          </span>
+           Share on Reddit
+        </a>
+        <button>
+          <span>
+            <span
+              class="fa-solid fa-link"
+            />
+          </span>
+           Copy Link
+        </button>
+      </div>
+      <div
+        class="markdown"
+      >
+        <h1>
+          Snapshot Test
+        </h1>
+        
 
-      <p>
-        This is 
-        <strong>
-          bold
-        </strong>
-         and 
-        <em>
-          italic
-        </em>
-        .
-      </p>
+        <p>
+          This is 
+          <strong>
+            bold
+          </strong>
+           and 
+          <em>
+            italic
+          </em>
+          .
+        </p>
+      </div>
     </article>
   </main>
 </div>

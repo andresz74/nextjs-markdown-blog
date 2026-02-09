@@ -42,7 +42,7 @@ module.exports = {
     ],
     moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
     testPathIgnorePatterns: ['/node_modules/', '/.next/'],
-    collectCoverage: true,
+    collectCoverage: false,
     collectCoverageFrom: [
         'components/**/*.{js,jsx,ts,tsx}',
         'utils/**/*.{js,jsx,ts,tsx}',
