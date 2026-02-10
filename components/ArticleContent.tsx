@@ -53,12 +53,12 @@ const ArticleContent: React.FC<ArticleContentProps> = ({
                         <>
                             <section className={styles.metaBar} aria-label="Article metadata">
                                 <div className={styles.metaRow}>
-                                    <span>{formattedDate}</span>
+                                    <span className={styles.metaValue}>{formattedDate}</span>
                                     <span className={styles.separator}>•</span>
-                                    <span>{readTime} min read</span>
+                                    <span className={styles.metaValue}>{readTime} min read</span>
                                     <span className={styles.separator}>•</span>
-                                    <details className={styles.metaDetails}>
-                                        <summary>Tags <span className={styles.caret}>▼</span></summary>
+                                    <details className={`${styles.metaDetails} ${styles.tagsDetails}`}>
+                                        <summary className={styles.metaTrigger}>Tags <span className={styles.caret}>▼</span></summary>
                                         <div className={styles.metaPanel}>
                                             {tags.length ? (
                                                 <ul className={styles.tagsList}>
@@ -72,8 +72,8 @@ const ArticleContent: React.FC<ArticleContentProps> = ({
                                         </div>
                                     </details>
                                     <span className={styles.separator}>•</span>
-                                    <details className={styles.metaDetails}>
-                                        <summary>Share <span className={styles.caret}>▼</span></summary>
+                                    <details className={`${styles.metaDetails} ${styles.shareDetails}`}>
+                                        <summary className={styles.metaTrigger}>Share <span className={styles.caret}>▼</span></summary>
                                         <div className={styles.metaPanel}>
                                             <ShareButtons title={articleTitle} url={shareUrl} variant="menu" />
                                         </div>

@@ -34,34 +34,44 @@
 .metaRow {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
-    justify-content: space-between;
-    gap: 8px;
+    justify-content: flex-start;
+    gap: 10px;
     font-size: 0.92rem;
 }
 
-.metaLabel {
-    color: var(--color-secondary);
+.metaValue {
+    white-space: nowrap;
 }
 
 .separator {
     color: var(--color-secondary);
+    white-space: nowrap;
 }
 
 .metaDetails {
     position: relative;
+    white-space: nowrap;
 }
 
-.metaDetails summary {
+.metaTrigger {
     align-items: center;
+    border: 1px solid var(--color-soft-primary);
+    border-radius: 6px;
     cursor: pointer;
     display: inline-flex;
     gap: 6px;
     list-style: none;
+    padding: 2px 8px;
+    user-select: none;
 }
 
-.metaDetails summary::-webkit-details-marker {
+.metaDetails[open] .metaTrigger {
+    background: var(--color-soft-secondary);
+}
+
+.metaTrigger::-webkit-details-marker {
     display: none;
 }
 
@@ -71,15 +81,40 @@
 }
 
 .metaPanel {
-    margin-top: 8px;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--color-soft-secondary);
+    border-radius: 8px;
+    box-shadow: var(--theme-box-shadow);
+    padding: 10px;
+    min-width: 240px;
+    z-index: 20;
+}
+
+.shareDetails .metaPanel {
+    left: auto;
+    right: 0;
+    min-width: 300px;
 }
 
 .tagsList {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     gap: 4px;
+    max-width: 360px;
+}
+
+.tagsList li {
+    border: 1px solid var(--color-soft-secondary);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    padding: 3px 8px;
+    white-space: nowrap;
 }
 
 .emptyHint {
@@ -100,4 +135,27 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+@media (max-width: 900px) {
+    .metaRow {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .separator {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .metaPanel {
+        min-width: 220px;
+    }
+
+    .shareDetails .metaPanel {
+        right: auto;
+        left: 0;
+        min-width: 240px;
+    }
 }
