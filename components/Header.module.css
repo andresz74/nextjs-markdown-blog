@@ -2,7 +2,7 @@
     height: 40px;
     width: 40px;
     margin-right: 12px;
-    background-image: var(--theme-logo);
+    background-image: url('/logo.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
