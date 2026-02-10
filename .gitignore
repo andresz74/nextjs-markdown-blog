@@ -39,3 +39,8 @@ serviceAccountKey.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local planning/docs (keep local-only)
+AGENTS.md
+CODEBASE_DEBT_BACKLOG.md
+SEO_30_DAY_RANKING_PLAN.md
