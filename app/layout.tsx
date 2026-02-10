@@ -53,8 +53,6 @@ export default function RootLayout({
     >
       <head>
         <link rel="stylesheet" href="/style/fa.all.css" />
-        <link rel="stylesheet" href="/style/light-steel.css" />
-        <link rel="stylesheet" href="/style/matrix.css" />
       </head>
       <body>
         {/* Runs before paint to avoid theme flash */}

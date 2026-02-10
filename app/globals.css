@@ -1,4 +1,21 @@
 :root {
+	/* Core palette tokens formerly provided by legacy theme stylesheets */
+	--bright-snow: #f8fafc;
+	--alabaster-grey: #d1d5db;
+	--iron-grey: #1f2937;
+	--slate-grey: #4b5563;
+	--pale-slate: #e5e7eb;
+	--pale-slate-2: #cbd5e1;
+	--carbon-black: #0f172a;
+	--gunmetal: #1f2937;
+	--black-green: #030712;
+	--onyx: #111827;
+	--dark-spruce: #14532d;
+	--green: #16a34a;
+	--lime-green: #86efac;
+	--forest-green: #4ade80;
+	--dusty-olive: #65a30d;
+
 	--bg: var(--bright-snow);
 	--text: var(--color-primary);
 	--link: var(--pale-slate-2);
@@ -140,9 +157,8 @@ footer {
 	width: 100%;
 }
 
-a.link,
-a:-webkit-any-link {
-    color: var(--link);
+a.link {
+	color: var(--link);
 	text-decoration: none;
 	border-bottom: 1px solid transparent;
 }
