@@ -38,7 +38,7 @@ export const buildContentMetadata = ({
 	fallbackTitle = 'The Tech Pulse | Tech Insights',
 }: {
 	slug: string;
-	sectionPath: 'articles' | 'notes' | 'docs';
+	sectionPath: 'articles' | 'notes' | 'docs' | 'fb-articles';
 	data?: ContentFrontmatter | null;
 	fallbackTitle?: string;
 }) => {
@@ -121,7 +121,7 @@ export const buildArticleJsonLd = ({
 			name: 'The Tech Pulse',
 			logo: {
 				'@type': 'ImageObject',
-				url: `${SITE_URL}/logo.png`,
+				url: `${SITE_URL}/logo.svg`,
 			},
 		},
 		datePublished: data?.date || new Date().toISOString(),

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+	metadataBase: new URL('https://blog.andreszenteno.com'),
 	title: 'The Tech Pulse - Explore Technology and Web Development',
 	description: 'Explore tech articles on web development, programming, and more. Created by Andres Zenteno.',
 	icons: {

@@ -1,8 +1,31 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import getAllContentMetadata from '@/utils/getAllContentMetadata';
 import normalizeTag from '@/utils/normalizeTag';
 import TagFilter from '@/components/TagFilter';
+import { SITE_URL } from '@/utils/contentPageMeta';
 import styles from './page.module.css';
+
+export const generateMetadata = (): Metadata => {
+	return {
+		title: 'Tags | The Tech Pulse',
+		description: 'Browse articles, notes, and docs by topic.',
+		alternates: {
+			canonical: `${SITE_URL}/tags`,
+		},
+		openGraph: {
+			type: 'website',
+			title: 'Tags | The Tech Pulse',
+			description: 'Browse articles, notes, and docs by topic.',
+			url: `${SITE_URL}/tags`,
+		},
+		twitter: {
+			card: 'summary',
+			title: 'Tags | The Tech Pulse',
+			description: 'Browse articles, notes, and docs by topic.',
+		},
+	};
+};
 
 const TagsPage = () => {
     const allContent = getAllContentMetadata();

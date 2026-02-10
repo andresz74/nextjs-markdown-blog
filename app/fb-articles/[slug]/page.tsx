@@ -3,6 +3,7 @@ import { ensureArticlesCacheFresh } from '@/utils/getAllArticles';
 import logger from '@/utils/logger';
 import { ArticleInterface } from '@/types/ArticleInterface';
 import { notFound } from 'next/navigation';
+import { buildArticleJsonLd, buildContentMetadata } from '@/utils/contentPageMeta';
 
 interface Params {
 	slug?: string;
@@ -24,52 +25,32 @@ export const generateStaticParams = async () => {
 
 export const generateMetadata = async ({ params }: { params: Params }) => {
 	const slug = params?.slug || '';
-	const baseUrl = 'https://blog.andreszenteno.com';
 	const articles: ArticleInterface[] = await ensureArticlesCacheFresh();
 	const article = articles.find((a: ArticleInterface) => a.slug === params.slug);
 
 	try {
-		// Fetch the article content and metadata
-		const metadata: { title: string; description: string; image: string } = article
-			? { title: article.title, description: article.bio, image: article.image }
-			: { title: '', description: '', image: '' };
-		const title = metadata.title || 'Untitled Article';
-		const description = metadata.description || 'Explore tech articles on web development, programming, and more.';
-		const image = metadata.image || '/media/default-image.jpg';
-		const isAbsoluteUrl = image.startsWith('http://') || image.startsWith('https://');
-		const imageUrl = isAbsoluteUrl ? image : `${baseUrl}${image}`;
+		if (!article) {
+			return buildContentMetadata({
+				slug,
+				sectionPath: 'fb-articles',
+				data: undefined,
+				fallbackTitle: 'The Tech Pulse',
+			});
+		}
 
-		return {
-			title: `${title.replaceAll('_', '')}`,
-			description,
-			openGraph: {
-				type: 'article',
-				title,
-				description,
-				url: `${baseUrl}/fb-articles/${slug}`,
-				site_name: 'The Tech Pulse',
-				locale: 'en_US',
-				images: [
-					{
-						url: imageUrl,
-						width: 1200,
-						height: 630,
-						alt: title + ' - featured image',
-					},
-				],
+		return buildContentMetadata({
+			slug,
+			sectionPath: 'fb-articles',
+			data: {
+				title: article.title,
+				description: article.bio,
+				image: article.image,
+				date: article.date,
+				author: article.author,
+				tags: article.tags,
 			},
-			twitter: {
-				card: 'summary_large_image',
-				title,
-				description,
-				images: [imageUrl],
-				site: '@andresz',
-				creator: '@andresz',
-			},
-			alternates: {
-				canonical: `${baseUrl}/fb-articles/${slug}`,
-			},
-		};
+			fallbackTitle: 'The Tech Pulse',
+		});
 	} catch (error) {
 		logger.error('fb-articles/[slug]/metadata', `Error fetching metadata for slug: ${slug}`, error);
 		return {
@@ -90,8 +71,20 @@ const ArticlePage = async ({ params }: FbArticlePageProps) => {
 		.filter((item) => item.tags?.some((tag) => tags.includes(tag)))
 		.slice(0, 3)
 		.map((item) => ({ title: item.title, slug: item.slug, folder: 'fb-articles' }));
+	const jsonLd = buildArticleJsonLd({
+		data: {
+			title: article.title,
+			description: article.bio,
+			image: article.image,
+			date: article.date,
+			author: article.author,
+			tags: article.tags,
+		},
+		content: article.content,
+	});
 	return (
 		<>
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 			<ArticleContent
 				articleContent={article.content}
 				articleTitle={article.title}
