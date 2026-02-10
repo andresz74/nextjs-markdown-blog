@@ -1,3 +1,7 @@
 .icon {
-    
+    align-items: center;
+    color: currentColor;
+    display: inline-flex;
+    font-size: 1em;
+    line-height: 1;
 }

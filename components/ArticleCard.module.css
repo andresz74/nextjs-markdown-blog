@@ -1,9 +1,12 @@
-.articleLink {
+.articleTitleLink {
+	color: inherit;
 	text-decoration: none;
 }
 
 .articleCard {
+	padding: 14px;
 	background: var(--card-bg);
+	color: var(--text);
 	display: flex;
 	flex-direction: row;
 	gap: 14px;
@@ -12,15 +15,15 @@
 	border-radius: var(--border-radius);
 	height: 100%;
 	border: 1px solid transparent;
-	padding: 14px;
 	transition-duration: 200ms;
 }
 
 .articleCard:hover {
-	border-color: var(--color-soft-primary);
+	border-color: var(--color-soft-secondary);
 }
 
 .articleCard h3 {
+	font-family: var(--theme-mono-font);
 	font-size: 1.25rem;
 	margin-bottom: 0.5rem;
 }
@@ -31,11 +34,18 @@
 	margin-bottom: 0.25rem;
 }
 
-.articleCard > img {
-    width: 160px;
-    height: 107px;
-    object-fit: cover;
-    border-radius: var(--border-radius);
+.cardImage {
+	width: 160px;
+	height: 107px;
+	object-fit: cover;
+	border-radius: var(--border-radius);
+}
+
+.cardContent {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .cardFooter {
@@ -49,4 +59,70 @@
 	color: var(--color-secondary);
 	font-size: 0.75rem;
 	line-height: 1;
+}
+
+.bioWrapper {
+	display: flex;
+	flex-direction: column;
+	max-height: 160px;
+	min-height: 80px;
+	overflow: hidden;
+}
+
+.tagList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	list-style: none;
+	padding: 0;
+	margin: 8px 0 0;
+}
+
+.tag {
+	max-width: 220px;
+	padding: 4px 10px;
+	border-radius: 999px;
+	border: 1px solid var(--color-soft-secondary);
+	font-size: 0.75rem;
+	line-height: 1.2;
+	color: var(--color-secondary);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.tagLink {
+	color: inherit;
+	text-decoration: none;
+	display: block;
+	max-width: 100%;
+	overflow-wrap: anywhere;
+}
+
+.tagLink:hover {
+	color: var(--text);
+	border-bottom: none;
+}
+
+.tagOverflow {
+	background: var(--bg);
+}
+
+.cardImageLink {
+	display: block;
+	flex-shrink: 0;
+}
+
+.cardImageLink img {
+	display: block;
+}
+
+.readMore {
+	font-size: 0.75rem;
+	color: var(--link);
+	text-decoration: none;
+}
+
+.readMore:hover {
+	text-decoration: underline;
 }

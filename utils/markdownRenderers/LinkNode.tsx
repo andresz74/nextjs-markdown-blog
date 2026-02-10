@@ -7,8 +7,24 @@ export interface LinkNodeProps {
 	children: React.ReactNode;
 }
 
+const isExternalHttpLink = (href: string) => href.startsWith('http://') || href.startsWith('https://');
+
 const LinkNode: React.FC<LinkNodeProps> = ({ href, children }) => {
-	return <a className={styles.link} href={href}>{children}</a>;
+	if (!href) {
+		return <span className={styles.link}>{children}</span>;
+	}
+
+	const external = isExternalHttpLink(href);
+	return (
+		<a
+			className={styles.link}
+			href={href}
+			target={external ? '_blank' : undefined}
+			rel={external ? 'noopener noreferrer nofollow' : undefined}
+		>
+			{children}
+		</a>
+	);
 };
 
 export default LinkNode;

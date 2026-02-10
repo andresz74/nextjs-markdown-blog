@@ -1,20 +1,26 @@
-import mock from 'mock-fs';
+import fs from 'fs';
 import getArticleContent from '@/utils/getArticleContent';
 
 describe('getArticleContent', () => {
-  beforeEach(() => {
-    mock({
-      articles: {
-        'my-article.md': '---\ntitle: My Article\n---\nThis is the content.',
-      },
-    });
-  });
+	afterEach(() => {
+		jest.restoreAllMocks();
+	});
 
-  afterEach(() => mock.restore());
+	it('returns data and content from a markdown file', () => {
+		jest.spyOn(fs, 'readFileSync').mockReturnValue('---\ntitle: My Note\n---\nThis is the content.');
 
-  it('should return data and content from a markdown file', () => {
-    const { data, content } = getArticleContent('articles', 'my-article');
-    expect(data.title).toBe('My Article');
-    expect(content).toContain('This is the content.');
-  });
+		const result = getArticleContent('notes', 'my-note');
+
+		expect(result?.data.title).toBe('My Note');
+		expect(result?.content).toContain('This is the content.');
+	});
+
+	it('returns null when file is missing', () => {
+		jest.spyOn(fs, 'readFileSync').mockImplementationOnce(() => {
+			throw new Error('ENOENT');
+		});
+
+		const result = getArticleContent('notes', 'missing');
+		expect(result).toBeNull();
+	});
 });

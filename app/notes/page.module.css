@@ -1,0 +1,12 @@
+.postsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.notesIntro > p {
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    line-height: 1.25rem;
+}

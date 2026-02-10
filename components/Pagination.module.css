@@ -1,0 +1,28 @@
+.pagination {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-top: 8px;
+}
+
+.pageLink {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 6px 10px;
+	border: 1px solid var(--color-soft-secondary);
+	border-radius: var(--border-radius);
+	color: var(--text);
+	text-decoration: none;
+	min-width: 84px;
+}
+
+.pageLink:hover {
+	border-color: var(--color-soft-primary);
+}
+
+.pageIndicator {
+	font-size: 0.9rem;
+	color: var(--color-secondary);
+}

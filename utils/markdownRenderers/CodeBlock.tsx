@@ -11,7 +11,7 @@ SyntaxHighlighter.registerLanguage('typescript', ts);
 SyntaxHighlighter.registerLanguage('javascript', js);
 SyntaxHighlighter.registerLanguage('css', css);
 
-const CustomSyntaxHighlighter = SyntaxHighlighter as unknown as React.FC<any>;
+const CustomSyntaxHighlighter = SyntaxHighlighter as any;
 
 export interface CodeBlockProps {
     className?: string;

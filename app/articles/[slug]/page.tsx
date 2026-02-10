@@ -1,6 +1,9 @@
+import { notFound } from 'next/navigation';
 import getArticleContent from '@/utils/getArticleContent';
 import getArticleMetadata from '@/utils/getArticleMetadata';
-import ArticleContent from '@/components/ArticleContent'; // Import the client component
+import getAllContentMetadata from '@/utils/getAllContentMetadata';
+import ArticleContent from '@/components/ArticleContent';
+import { buildArticleJsonLd, buildContentMetadata } from '@/utils/contentPageMeta';
 
 export const generateStaticParams = async () => {
 	const articles = getArticleMetadata('articles');
@@ -11,30 +14,55 @@ interface Params {
 	slug?: string;
 }
 
-interface SearchParams {
-	[key: string]: string | string[];
+interface ArticlePageProps {
+	params: {
+		slug: string;
+	};
 }
 
-export const generateMetadata = async ({
-	params,
-	searchParams,
-}: {
-	params: Params;
-	searchParams: SearchParams;
-}) => {
-	const id = params?.slug ? ' - ' + params?.slug : '';
-	return {
-		title: `My Blog ${id.replaceAll('_', '')}`,
-	};
+export const generateMetadata = async ({ params }: { params: Params }) => {
+	const slug = params?.slug || '';
+	const articleContent = getArticleContent('articles/', slug);
+	return buildContentMetadata({
+		slug,
+		sectionPath: 'articles',
+		data: articleContent?.data,
+		fallbackTitle: 'The Tech Pulse',
+	});
 };
 
-const ArticlePage = (props: any) => {
-	const slug = props.params.slug;
-	const article = getArticleContent('articles/', slug);
+const ArticlePage = ({ params }: ArticlePageProps) => {
+	const slug = params.slug;
+	const articleContent = getArticleContent('articles/', slug);
+	if (!articleContent) return notFound();
+	const metadata = articleContent.data || {};
+	const title = metadata.title || 'Untitled Article';
+	const tags = metadata.tags ?? [];
+	const relatedItems = getAllContentMetadata()
+		.filter((item) => item.folder === 'articles' && item.slug !== slug)
+		.filter((item) => item.tags?.some((tag) => tags.includes(tag)))
+		.slice(0, 3)
+		.map((item) => ({ title: item.title, slug: item.slug, folder: item.folder }));
+	const jsonLd = buildArticleJsonLd({
+		data: metadata,
+		content: articleContent.content,
+	});
 
 	// Use ArticleContent for client-side logic
 	return (
-		<ArticleContent articleContent={article.content} articleTitle={article.data.title} folder='articles' loading={false} slug={slug} />
+		<>
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+			<ArticleContent
+				articleTitle={title}
+				articleContent={articleContent.content}
+				date={metadata.date}
+				folder='articles'
+				slug={slug}
+				tags={tags}
+				loading={false}
+				relatedItems={relatedItems}
+			/>
+		</>
 	);
 };
 

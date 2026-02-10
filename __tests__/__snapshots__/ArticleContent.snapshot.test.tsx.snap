@@ -4,6 +4,125 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
 <div>
   <main>
     <article>
+      <section
+        aria-label="Article metadata"
+      >
+        <div>
+          <span>
+            N/A
+          </span>
+          <span>
+            •
+          </span>
+          <span>
+            1
+             min read
+          </span>
+          <span>
+            •
+          </span>
+          <details
+            class="undefined undefined"
+          >
+            <summary>
+              Tags 
+              <span>
+                ▼
+              </span>
+            </summary>
+            <div>
+              <span>
+                No tags
+              </span>
+            </div>
+          </details>
+          <span>
+            •
+          </span>
+          <details
+            class="undefined undefined"
+          >
+            <summary>
+              Share 
+              <span>
+                ▼
+              </span>
+            </summary>
+            <div>
+              <div
+                class="undefined undefined"
+              >
+                <a
+                  href="https://twitter.com/intent/tweet?text=Snapshot%20Test&url=https%3A%2F%2Fblog.andreszenteno.com%2Farticles%2Fsnapshot-test"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    class="undefined"
+                  >
+                    <span
+                      class="fa-brands fa-twitter"
+                    />
+                  </span>
+                   Share on Twitter
+                </a>
+                <a
+                  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.andreszenteno.com%2Farticles%2Fsnapshot-test"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    class="undefined"
+                  >
+                    <span
+                      class="fa-brands fa-facebook"
+                    />
+                  </span>
+                   Share on Facebook
+                </a>
+                <a
+                  href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fblog.andreszenteno.com%2Farticles%2Fsnapshot-test"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    class="undefined"
+                  >
+                    <span
+                      class="fa-brands fa-linkedin"
+                    />
+                  </span>
+                   Share on LinkedIn
+                </a>
+                <a
+                  href="https://reddit.com/submit?url=https%3A%2F%2Fblog.andreszenteno.com%2Farticles%2Fsnapshot-test&title=Snapshot%20Test"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    class="undefined"
+                  >
+                    <span
+                      class="fa-brands fa-reddit"
+                    />
+                  </span>
+                   Share on Reddit
+                </a>
+                <button>
+                  <span
+                    class="undefined"
+                  >
+                    <span
+                      class="fa-solid fa-link"
+                    />
+                  </span>
+                   Copy Link
+                </button>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
       <h1>
         Snapshot Test
       </h1>

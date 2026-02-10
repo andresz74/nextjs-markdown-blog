@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.subtitle {
+    color: var(--color-secondary);
+    font-size: 0.95rem;
+}
+
+.postsContainer {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 14px;
+}
+
+@media (min-width: 640px) {
+    .postsContainer {
+        gap: 24px;
+    }
+}

@@ -1,0 +1,15 @@
+.postsContainer {
+	display: grid;
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+	gap: 14px;
+}
+
+.notesIntro {
+	color: var(--color-secondary);
+}
+
+@media (min-width: 640px) {
+	.postsContainer {
+		gap: 24px;
+	}
+}

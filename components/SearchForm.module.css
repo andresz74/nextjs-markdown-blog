@@ -1,0 +1,33 @@
+.form {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 8px;
+	align-items: end;
+}
+
+.label {
+	grid-column: 1 / -1;
+	font-size: 0.9rem;
+	color: var(--color-secondary);
+}
+
+.input {
+	padding: 8px 12px;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--color-soft-secondary);
+	background: var(--card-bg);
+	color: var(--text);
+}
+
+.button {
+	padding: 8px 12px;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--color-soft-secondary);
+	background: transparent;
+	color: var(--text);
+	cursor: pointer;
+}
+
+.button:hover {
+	border-color: var(--color-soft-primary);
+}
