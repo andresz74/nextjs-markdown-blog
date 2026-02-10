@@ -76,26 +76,22 @@ exports[`ArticleContent snapshot matches snapshot for simple markdown 1`] = `
         1
          min read
       </p>
-      <div
-        class="markdown"
-      >
-        <h1>
-          Snapshot Test
-        </h1>
-        
+      <h1>
+        Snapshot Test
+      </h1>
+      
 
-        <p>
-          This is 
-          <strong>
-            bold
-          </strong>
-           and 
-          <em>
-            italic
-          </em>
-          .
-        </p>
-      </div>
+      <p>
+        This is 
+        <strong>
+          bold
+        </strong>
+         and 
+        <em>
+          italic
+        </em>
+        .
+      </p>
     </article>
   </main>
 </div>
