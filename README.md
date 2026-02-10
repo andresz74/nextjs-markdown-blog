@@ -1,51 +1,54 @@
 # My Blog
 
-A statically generated blog built with Next.js 14 and TypeScript. Articles are written in Markdown and rendered with React components, including syntax highlighting for code samples.
+A Next.js 14 + TypeScript blog with Markdown content, feed routes, tags, and static export output.
 
 ## Project structure
-- `app/` – Next.js App Router pages for the blog, docs, notes, and article detail views.
-- `articles/` – Markdown posts that power the main blog listing on `/` (original writing).
-- `notes/` – Markdown summaries of interesting YouTube videos.
-- `components/` – Shared UI such as `ArticleCard` used to render post previews.
-- `utils/` – Helpers like `getArticleMetadata` that read and cache Markdown frontmatter.
-- `__tests__/` – Jest and Testing Library test suites.
+- `app/`: App Router pages and route handlers (`rss.xml`, `atom.xml`, `feed.json`, `sitemap.xml`, `robots.txt`).
+- `articles/`, `notes/`: Markdown content sources.
+- `components/`: Shared UI (cards, header, markdown renderer, filters, pagination).
+- `utils/`: Metadata/content loaders, SEO helpers, tag normalization, feed assembly.
+- `scripts/`: Content/tag/SEO validators and Firestore sync tooling.
+- `__tests__/`: Jest + Testing Library suites and snapshots.
 
 ## Prerequisites
 - Node.js 18+
-- Yarn (project uses Yarn 3; a `.yarnrc` is not checked in, so `yarn install` will create one locally.)
+- Corepack enabled (repo uses `packageManager: yarn@3.6.3`)
 
 ## Getting started
-1. Install dependencies:
+1. Enable Corepack and install deps:
    ```bash
-   yarn install
+   corepack enable
+   corepack yarn install
    ```
-2. Run the development server:
+2. Start local dev server:
    ```bash
-   yarn dev
+   corepack yarn dev
    ```
-3. Open [http://localhost:3000](http://localhost:3000) to view the site.
+3. Open [http://localhost:3000](http://localhost:3000).
 
-To add a new post, drop a Markdown file with frontmatter (`title`, `date`, `description`, optional `image`) into the `articles/` directory for original writing or the `notes/` directory for YouTube summaries. The homepage will automatically pick it up and sort posts by date.
+## Common commands
+- `corepack yarn lint`: ESLint checks.
+- `corepack yarn test --runInBand`: run test suite.
+- `corepack yarn test:coverage`: coverage run.
+- `corepack yarn lint:tags`: validate tag formatting/normalization rules.
+- `corepack yarn validate:content`: frontmatter/content checks.
+- `corepack yarn validate:seo`: SEO frontmatter checks.
+- `corepack yarn build`: production build + static export.
 
-## Testing and linting
-- Run the test suite: `yarn test`
-- Run ESLint checks: `yarn lint`
+## Firestore sync
+Sync markdown content to Firestore:
+- Dry run: `corepack yarn sync:firestore:dry`
+- Apply: `corepack yarn sync:firestore`
 
-## Sync Markdown to Firestore
-This repo includes a sync script to upsert markdown content into Firestore collections:
-- `articles/*.md` -> `articles`
-- `notes/*.md` -> `notes`
+Set one credential source:
+- `FIREBASE_SERVICE_ACCOUNT_PATH`
+- `GOOGLE_APPLICATION_CREDENTIALS`
+- `FIREBASE_SERVICE_ACCOUNT_JSON`
 
-Commands:
-- Dry run (default-safe): `yarn sync:firestore:dry`
-- Apply changes: `yarn sync:firestore`
+## CI and releases
+- `.github/workflows/ci.yml`: lint, tests, content validation, SEO validation on PRs and `main`.
+- `.github/workflows/release.yml`: creates a GitHub Release automatically when a tag is pushed.
 
-Credentials (one of the following):
-- `FIREBASE_SERVICE_ACCOUNT_PATH=/absolute/path/to/serviceAccountKey.json`
-- `GOOGLE_APPLICATION_CREDENTIALS=/absolute/path/to/serviceAccountKey.json`
-- `FIREBASE_SERVICE_ACCOUNT_JSON='{"type":"service_account",...}'`
-
-The script file is `scripts/sync-markdown-to-firestore.mjs`.
-
-## Deployment
-Build the production bundle with `yarn build`. Start the optimized server locally with `yarn start` after building, or deploy the build output to Cloudflare (the project is configured and optimized for Cloudflare deployment).
+## Deployment notes
+- `next.config.mjs` uses `output: 'export'` and `images.unoptimized: true`.
+- Build artifacts are static and can be deployed to static hosting/CDN platforms.
