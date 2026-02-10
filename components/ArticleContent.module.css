@@ -89,7 +89,7 @@
     border-radius: 8px;
     box-shadow: var(--theme-box-shadow);
     padding: 10px;
-    min-width: 240px;
+    min-width: 180px;
     z-index: 20;
 }
 
