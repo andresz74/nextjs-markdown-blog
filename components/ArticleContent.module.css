@@ -96,7 +96,7 @@
 .shareDetails .metaPanel {
     left: auto;
     right: 0;
-    min-width: 300px;
+    min-width: 180px;
 }
 
 .tagsList {
