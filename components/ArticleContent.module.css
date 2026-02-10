@@ -24,9 +24,65 @@
     }
 }
 
-.readingTime {
-    font-size: 0.9rem;
+.metaBar {
+    border-top: 1px solid var(--color-soft-secondary);
+    border-bottom: 1px solid var(--color-soft-secondary);
+    margin-bottom: 16px;
+    padding: 10px 0;
+}
+
+.metaRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.92rem;
+}
+
+.metaLabel {
     color: var(--color-secondary);
+}
+
+.separator {
+    color: var(--color-secondary);
+}
+
+.metaDetails {
+    position: relative;
+}
+
+.metaDetails summary {
+    align-items: center;
+    cursor: pointer;
+    display: inline-flex;
+    gap: 6px;
+    list-style: none;
+}
+
+.metaDetails summary::-webkit-details-marker {
+    display: none;
+}
+
+.caret {
+    font-size: 0.72rem;
+    line-height: 1;
+}
+
+.metaPanel {
+    margin-top: 8px;
+}
+
+.tagsList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 4px;
+}
+
+.emptyHint {
+    color: var(--color-secondary);
+    font-size: 0.85rem;
 }
 
 .relatedSection {

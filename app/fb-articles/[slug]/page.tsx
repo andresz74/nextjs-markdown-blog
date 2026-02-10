@@ -88,9 +88,11 @@ const ArticlePage = async ({ params }: FbArticlePageProps) => {
 			<ArticleContent
 				articleContent={article.content}
 				articleTitle={article.title}
+				date={article.date}
 				folder="fb-articles"
 				loading={false}
 				slug={slug}
+				tags={tags}
 				relatedItems={relatedItems}
 			/>
 		</>

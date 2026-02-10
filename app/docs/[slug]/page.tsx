@@ -55,9 +55,11 @@ const ArticlePage = ({ params }: DocsPageProps) => {
 			<ArticleContent
 				articleContent={docContent.content}
 				articleTitle={title}
+				date={metadata.date}
 				folder='docs'
 				loading={false}
 				slug={slug}
+				tags={tags}
 				relatedItems={relatedItems}
 			/>
 		</>

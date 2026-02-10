@@ -8,13 +8,15 @@
 	margin-bottom: 1rem;
 }
 
-.shareContainer a,
-.shareContainer button {
+.shareAction {
 	background: var(--color-soft-secondary);
 	border: none;
 	border-radius: 5px;
 	color: var(--color-secondary);
 	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
 	padding: 0.25rem 0.5rem;
 	text-decoration: none;
 }
@@ -23,8 +25,19 @@
     font-size: 12px;
 }
 
-.shareContainer a:hover,
-.shareContainer button:hover {
+.shareAction:hover {
     background: var(--color-secondary);
     color: var(--color-soft-primary);
+}
+
+.menuContainer {
+	margin-bottom: 0;
+	display: grid;
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+	gap: 6px;
+}
+
+.menuContainer .shareAction {
+	justify-content: flex-start;
+	width: 100%;
 }
