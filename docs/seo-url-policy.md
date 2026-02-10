@@ -1,3 +1,14 @@
+---
+title: "SEO URL Policy"
+date: 2026-02-10
+description: "Canonical URL and metadata policy for routes, feeds, sitemap, and robots in The Tech Pulse."
+canonical_url: https://blog.andreszenteno.com/docs/seo-url-policy
+author: Andres Zenteno
+tags:
+  - seo
+  - canonical
+  - metadata
+---
 # SEO URL Policy
 
 ## Canonical URL rules

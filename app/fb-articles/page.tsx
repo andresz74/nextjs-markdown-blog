@@ -8,6 +8,7 @@ import Markdown from 'react-markdown';
 import styles from './page.module.css';
 
 export const generateMetadata = (): Metadata => {
+	const imageUrl = `${SITE_URL}/media/default-image.jpg`;
 	return {
 		title: 'Firebase Articles | The Tech Pulse',
 		description: 'Articles sourced from Firebase Firestore.',
@@ -19,11 +20,20 @@ export const generateMetadata = (): Metadata => {
 			title: 'Firebase Articles | The Tech Pulse',
 			description: 'Articles sourced from Firebase Firestore.',
 			url: `${SITE_URL}/fb-articles`,
+			images: [
+				{
+					url: imageUrl,
+					width: 1200,
+					height: 630,
+					alt: 'Firebase Articles | The Tech Pulse',
+				},
+			],
 		},
 		twitter: {
-			card: 'summary',
+			card: 'summary_large_image',
 			title: 'Firebase Articles | The Tech Pulse',
 			description: 'Articles sourced from Firebase Firestore.',
+			images: [imageUrl],
 		},
 	};
 };

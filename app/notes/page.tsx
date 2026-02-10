@@ -7,6 +7,7 @@ import FilteredArticleList from '@/components/FilteredArticleList';
 import { SITE_URL } from '@/utils/contentPageMeta';
 
 export const generateMetadata = (): Metadata => {
+	const imageUrl = `${SITE_URL}/media/default-image.jpg`;
 	return {
 		title: 'Notes | The Tech Pulse',
 		description: 'Quick summaries and notes from videos, experiments, and practical tech learnings.',
@@ -18,11 +19,20 @@ export const generateMetadata = (): Metadata => {
 			title: 'Notes | The Tech Pulse',
 			description: 'Quick summaries and notes from videos, experiments, and practical tech learnings.',
 			url: `${SITE_URL}/notes`,
+			images: [
+				{
+					url: imageUrl,
+					width: 1200,
+					height: 630,
+					alt: 'Notes | The Tech Pulse',
+				},
+			],
 		},
 		twitter: {
-			card: 'summary',
+			card: 'summary_large_image',
 			title: 'Notes | The Tech Pulse',
 			description: 'Quick summaries and notes from videos, experiments, and practical tech learnings.',
+			images: [imageUrl],
 		},
 	};
 };

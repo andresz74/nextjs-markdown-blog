@@ -32,3 +32,6 @@ jobs:
 
       - name: Validate content frontmatter
         run: yarn validate:content
+
+      - name: Validate SEO frontmatter
+        run: yarn validate:seo

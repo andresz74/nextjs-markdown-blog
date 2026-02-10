@@ -7,6 +7,7 @@ import { SITE_URL } from '@/utils/contentPageMeta';
 import styles from './page.module.css';
 
 export const generateMetadata = (): Metadata => {
+	const imageUrl = `${SITE_URL}/media/default-image.jpg`;
 	return {
 		title: 'Tags | The Tech Pulse',
 		description: 'Browse articles, notes, and docs by topic.',
@@ -18,11 +19,20 @@ export const generateMetadata = (): Metadata => {
 			title: 'Tags | The Tech Pulse',
 			description: 'Browse articles, notes, and docs by topic.',
 			url: `${SITE_URL}/tags`,
+			images: [
+				{
+					url: imageUrl,
+					width: 1200,
+					height: 630,
+					alt: 'Tags | The Tech Pulse',
+				},
+			],
 		},
 		twitter: {
-			card: 'summary',
+			card: 'summary_large_image',
 			title: 'Tags | The Tech Pulse',
 			description: 'Browse articles, notes, and docs by topic.',
+			images: [imageUrl],
 		},
 	};
 };

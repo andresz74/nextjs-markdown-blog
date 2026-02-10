@@ -37,6 +37,7 @@ export const generateMetadata = ({ params }: TagPageProps): Metadata => {
 		.find((tag) => normalizeTag(tag) === tagSlug) ?? params.tag;
 	const title = `Tag: ${displayTag} | The Tech Pulse`;
 	const description = `Posts tagged with ${displayTag}.`;
+	const imageUrl = `${SITE_URL}/media/default-image.jpg`;
 	return {
 		title,
 		description,
@@ -48,11 +49,20 @@ export const generateMetadata = ({ params }: TagPageProps): Metadata => {
 			title,
 			description,
 			url: `${SITE_URL}/tags/${tagSlug}`,
+			images: [
+				{
+					url: imageUrl,
+					width: 1200,
+					height: 630,
+					alt: title,
+				},
+			],
 		},
 		twitter: {
-			card: 'summary',
+			card: 'summary_large_image',
 			title,
 			description,
+			images: [imageUrl],
 		},
 	};
 };

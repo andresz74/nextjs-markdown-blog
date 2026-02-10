@@ -10,6 +10,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage --runInBand",
     "validate:content": "node scripts/validate-content-frontmatter.mjs",
+    "validate:seo": "node scripts/validate-seo-frontmatter.mjs",
     "lint:tags": "node scripts/lint-tags.mjs",
     "sync:firestore": "node scripts/sync-markdown-to-firestore.mjs --apply",
     "sync:firestore:dry": "node scripts/sync-markdown-to-firestore.mjs --dry-run"

@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { SITE_URL } from '@/utils/contentPageMeta';
 
 export const generateMetadata = async (): Promise<Metadata> => {
+	const imageUrl = `${SITE_URL}/media/default-image.jpg`;
 	return {
 		title: 'About | The Tech Pulse',
 		description: 'About Andres Zenteno and The Tech Pulse: what this blog covers and how content is created.',
@@ -16,11 +17,20 @@ export const generateMetadata = async (): Promise<Metadata> => {
 			title: 'About | The Tech Pulse',
 			description: 'About Andres Zenteno and The Tech Pulse.',
 			url: `${SITE_URL}/about`,
+			images: [
+				{
+					url: imageUrl,
+					width: 1200,
+					height: 630,
+					alt: 'About | The Tech Pulse',
+				},
+			],
 		},
 		twitter: {
-			card: 'summary',
+			card: 'summary_large_image',
 			title: 'About | The Tech Pulse',
 			description: 'About Andres Zenteno and The Tech Pulse.',
+			images: [imageUrl],
 		},
 	};
 };
