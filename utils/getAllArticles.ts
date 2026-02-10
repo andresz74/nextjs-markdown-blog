@@ -1,5 +1,7 @@
 import fs from 'fs';
 import path from 'path';
+import getArticleContent from '@/utils/getArticleContent';
+import getArticleMetadata from '@/utils/getArticleMetadata';
 
 const CACHE_PATH = path.join(process.cwd(), 'cache', 'articles.json');
 
@@ -52,9 +54,27 @@ const hasFirebaseConfig = () => {
   );
 };
 
+const getLocalMarkdownFallbackArticles = (): CachedArticle[] => {
+  return getArticleMetadata('articles').map(item => {
+    const article = getArticleContent('articles/', item.slug);
+    return {
+      slug: item.slug,
+      author: '',
+      canonical: '',
+      content: article?.content ?? '',
+      date: item.date ?? '',
+      bio: item.bio ?? '',
+      image: item.image ?? '',
+      tags: item.tags ?? [],
+      title: item.title ?? '',
+    };
+  });
+};
+
 export async function fetchAndCacheArticles() {
     if (!hasFirebaseConfig()) {
-      return getCachedArticles().articles;
+      const cachedArticles = getCachedArticles().articles;
+      return cachedArticles.length > 0 ? cachedArticles : getLocalMarkdownFallbackArticles();
     }
     const { getDocs, collection } = await import('firebase/firestore');
     const { db } = await import('@/firebase.configuration');

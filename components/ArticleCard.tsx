@@ -45,7 +45,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, folder }) => {
 					</ul>
 				) : null}
 				<div className={styles.cardFooter}>
-					<div className={styles.articleDate}>{getDateFormat(article.date)}</div>
+					<div className={styles.articleDate}>{getDateFormat(article.date ?? new Date().toISOString())}</div>
 					<Link className={styles.readMore} href={`/${folder}/${article.slug}`}>
 						Read post
 					</Link>

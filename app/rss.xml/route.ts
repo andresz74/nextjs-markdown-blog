@@ -14,7 +14,7 @@ export const GET = async () => {
             const pubDate = item.date ? new Date(item.date).toUTCString() : new Date().toUTCString();
             return `
         <item>
-          <title>${escapeXml(item.title)}</title>
+          <title>${escapeXml(item.title ?? '')}</title>
           <link>${item.url}</link>
           <guid>${item.url}</guid>
           <pubDate>${pubDate}</pubDate>

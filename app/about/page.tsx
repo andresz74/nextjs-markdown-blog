@@ -1,8 +1,7 @@
 import getArticleContent from '@/utils/getArticleContent';
 import Markdown from '@/components/Markdown';
-import type { Metadata } from 'next';
 
-export const generateMetadata = async (): Promise<Metadata> => {
+export const generateMetadata = async () => {
 	return {
 		title: `My Blog - About`,
 	};
@@ -13,7 +12,7 @@ const ArticlePage = () => {
 	return (
 		<main>
 			<article>
-				<Markdown>{about.content}</Markdown>
+				<Markdown>{about?.content ?? ''}</Markdown>
 			</article>
 		</main>
 	);

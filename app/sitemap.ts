@@ -1,4 +1,3 @@
-import type { MetadataRoute } from 'next';
 import getAllContentMetadata from '@/utils/getAllContentMetadata';
 import normalizeTag from '@/utils/normalizeTag';
 import { getCachedArticles } from '@/utils/getAllArticles';
@@ -17,7 +16,7 @@ const staticRoutes = [
 	'/feed.json',
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default function sitemap() {
 	const contentRoutes = getAllContentMetadata().map(item => ({
 		url: `${BASE_URL}/${item.folder}/${item.slug}`,
 		lastModified: item.date ? new Date(item.date) : new Date(),

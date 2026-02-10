@@ -9,7 +9,7 @@ export default function Home() {
 	return (
 		<main className='postsContainer'>
 			{sortedArticles.map((article, i) => {
-				return <ArticleCard key={i} article={article}></ArticleCard>;
+				return <ArticleCard key={i} article={article} folder='articles'></ArticleCard>;
 			})}
 		</main>
 	);

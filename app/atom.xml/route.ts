@@ -14,7 +14,7 @@ export const GET = async () => {
             const updatedItem = item.date ? new Date(item.date).toISOString() : updated;
             return `
     <entry>
-      <title>${escapeXml(item.title)}</title>
+      <title>${escapeXml(item.title ?? '')}</title>
       <id>${item.url}</id>
       <link href="${item.url}" />
       <updated>${updatedItem}</updated>

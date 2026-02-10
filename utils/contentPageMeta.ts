@@ -1,5 +1,3 @@
-import type { Metadata } from 'next';
-
 export const SITE_URL = 'https://blog.andreszenteno.com';
 const DEFAULT_DESCRIPTION = 'Explore tech articles on web development, programming, and more.';
 const DEFAULT_IMAGE = '/media/default-image.jpg';
@@ -43,7 +41,7 @@ export const buildContentMetadata = ({
 	sectionPath: 'articles' | 'notes' | 'docs';
 	data?: ContentFrontmatter | null;
 	fallbackTitle?: string;
-}): Metadata => {
+}) => {
 	if (!data) {
 		return {
 			title: fallbackTitle,

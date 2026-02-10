@@ -14,6 +14,7 @@ import { Components } from 'react-markdown';
 
 interface MarkdownProps {
 	children: string;
+	type?: string;
 }
 
 const inlineCodeStyle = {

@@ -1,8 +1,6 @@
-import type { MetadataRoute } from 'next';
-
 const BASE_URL = 'https://blog.andreszenteno.com';
 
-export default function robots(): MetadataRoute.Robots {
+export default function robots() {
 	return {
 		rules: {
 			userAgent: '*',
