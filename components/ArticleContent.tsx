@@ -53,11 +53,9 @@ const ArticleContent: React.FC<ArticleContentProps> = ({
                         <>
                             <section className={styles.metaBar} aria-label="Article metadata">
                                 <div className={styles.metaRow}>
-                                    <span className={styles.metaLabel}>Date</span>
                                     <span>{formattedDate}</span>
                                     <span className={styles.separator}>•</span>
-                                    <span className={styles.metaLabel}>Read time</span>
-                                    <span>{readTime} min</span>
+                                    <span>{readTime} min read</span>
                                     <span className={styles.separator}>•</span>
                                     <details className={styles.metaDetails}>
                                         <summary>Tags <span className={styles.caret}>▼</span></summary>
